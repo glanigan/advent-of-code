@@ -31,7 +31,7 @@ type Years = 2023;
 
 export function getInput(year: Years, day: Day, sample?: boolean) {
   const inputFile =
-    (process.env.SAMPLE = true ? "input.sample.txt" : "input.txt") || sample;
+    process.env.SAMPLE ==='true' ? "input.sample.txt" : "input.txt" || sample;
 
   return fs
     .readFileSync(`src/${year}/day-${day}/${inputFile}`, "utf8")
