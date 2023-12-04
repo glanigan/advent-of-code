@@ -28,7 +28,7 @@ let copies = lines.map(()=>1);
 lines.forEach((card,cardIndex)=>{
     const [winningNumbers,cardNumbers] = card.replace(/Card\s+\d+:/,'').replace(/\s\s/,' ').split('|').map(n=>n.trim().split(' '));
     
-    let matchScore = cardNumbers?.reduce((matchScore,num)=>{
+    let cardMatches = cardNumbers?.reduce((matchScore,num)=>{
         if(!parseInt(num)) return matchScore;
         if(!winningNumbers?.includes(num)){
             return matchScore;
@@ -36,10 +36,10 @@ lines.forEach((card,cardIndex)=>{
         return matchScore+1;
     },0);
 
-    if(!matchScore)return;
-    while(matchScore){
-        matchScore--;
-        const copyPosition = cardIndex + matchScore;
+    if(!cardMatches)return;
+    while(cardMatches){
+        cardMatches--;
+        const copyPosition = cardIndex + cardMatches;
         // @ts-ignore
         copies[copyPosition] += copies[cardIndex];
     };
